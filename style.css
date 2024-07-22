@@ -2,11 +2,31 @@
     padding:0px;
     margin:0px;
 }
+:root{
+    --main-content-background:rgb(177, 247, 206);
+    --sidebar-color:rgb( 1, 56, 47);
+    --sidebar-text:rgb(255, 255, 252);
+    --header:rgb(24, 175, 150);
+    --header-buttons:rgb(1, 56, 47);
+    --project-card-background:rgb(21, 114, 98);
+    --project-card-padding:rgb(4, 223, 95);
+    --announcements-background:rgb(1, 56, 47);
+    --trending-background:rgb(1, 56, 47);
+}
+@font-face {
+    font-family: "roboto";
+    src: url("fonts/Roboto/Roboto-Bold.ttf");
+    
+}
+@font-face {
+    font-family: "light-roboto";
+    src: url(fonts/Roboto/Roboto-Light.ttf);
+}
 
 .container{
     display:grid;
     grid-template-rows:250px 4.2fr;
-    grid-template-columns:minmax(200px,0.7fr) 4fr ;
+    grid-template-columns:minmax(300px,0.9fr) minmax(250px,4fr) ;
     grid-template-areas: 
     'sidebar header'
     'sidebar content';
@@ -17,60 +37,170 @@
     grid-area: sidebar;
     display:grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 4fr 2fr;
+    grid-template-rows: 0.7fr 3fr 2fr;
     grid-template-areas: 
     'header'
     'nav'
     'utilities';
-    padding-bottom: 35vh;
-    padding-left: 1vw;
-    padding-right: 5vw;
+    padding-bottom: 25vh;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: var(--sidebar-color);
+    padding-top:30px;
 }
 
 .sidebar-header{
-
+    display:grid;
+    grid-template-columns: 20% 80%;
+    align-items: center;
+    gap:10px;
+    
+    
+}
+.sidebar p{
+    font-family:"roboto",sans-serif;
+    color:var(--sidebar-text);
+    font-size:1.5rem;
+    
+}
+.sidebar svg{
+    fill:var(--sidebar-text);
+    width:80%;
+}
+.sidebar-header h1{
+    font-size: 1.9rem;
+    font-family:"roboto";
+    font-weight: 400;
+    color: var(--sidebar-text);
 }
 .sidebar-nav,
 .sidebar-utilities{
     display:grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 15% 85%;
     grid-auto-rows: 1fr;
+    gap:10px;
+    align-items: center;
     
+}
+.sidebar-utilities{
+   box-sizing: border-box;
+   padding-top:80px;
 }
 .header{
     grid-area: header;
     display:grid;
-    grid-template-columns:1.5fr 1fr ;
+    grid-template-columns:65% 35% ;
     grid-template-rows: 35% 65%;
     grid-template-areas: 
     'top_left top_right'
     'bottom_left bottom_right';
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 50px;
+    padding-right: 60px;
     padding-top: 10px;
     padding-bottom: 10px;
+    background-color: var(--header);
+    row-gap: 20px;
+    box-shadow: -1px 10px 15px 0px rgba(0,0,0,20%);
+    z-index: 1;
+    
 }
 .top-left{
     grid-area: top_left;
+    display:grid;
+    grid-template-columns: 10% 90%;
+}
+.project-header{
+    font-family: "roboto",sans-serif;
+    font-size: 1.6rem;
+    color:var(--sidebar-text);
+}
+.top-left svg{
+    height:50%;
+    align-self: center;
+    justify-self: end;
+    padding-right: 10px;
+    fill:var(--sidebar-text);
+}
+.top-left button{
+    border-radius: 28px;
+    height:50%;
+    align-self: center;
+    border-width: 0px;
+    background-color: rgba(226, 232, 240, 255);
+    width:90%;
+    
+            
 }
 .top-right{
     grid-area: top_right;
+    display:grid;
+    grid-template-columns: 30% 30% 40%;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
 
+}
+.top-right p{
+    padding-left: 15px;
+}
+.profile-picture-small{
+    height: 85%;
+    border-radius: 35px;
+}
+.top-right svg{
+    fill:var(--sidebar-text);
+    height:60%;
+    justify-self: center;
 }
 .bottom-left{
     grid-area: bottom_left;
     display:grid;
-    grid-template-columns:1fr 3fr ;
+    grid-template-columns:150px 3fr ;
     grid-template-rows: 1fr 2fr;
     grid-template-areas:
     'picture text'
     'picture header';
 }
+.bottom-left img{
+    grid-area: picture;
+    height:60%;
+    border-radius: 80px;
+    justify-self: center;
+    align-self: start;
+    margin-top: 10px;
+}
+.bottom-left p{
+    font-family: "roboto",sans-serif;
+    font-size: 2rem;
+    justify-self: start;
+    color:var(--sidebar-text)
+}
+.bottom-left #small{
+    font-size:1rem;
+    align-self:end;
+}
 .profile-picture{
     width:50%;
 }
+.bottom-right button{
+  height:35%;
+  border-radius: 30px;
+    align-self: center;
+    margin-bottom: 20px;
+    justify-self: start;
+    width:100%;
+    border-width:0px;
+    background-color: var(--header-buttons);
+    color:var(--sidebar-text);
+    font-family: "roboto",sans-serif;
+    font-size:large;
+}
 .bottom-right{
     grid-area:bottom_right;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:20px;
 }
 .main-content{
     grid-area: content;
@@ -80,29 +210,160 @@
     grid-template-areas: 
     'projects announcements'
     'projects trending';
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    column-gap: 20px;
+    background-color: var(--main-content-background);
+    padding-top:50px;
+}
+
+.announcements{
+    grid-area:announcements;
+    display:grid;
+    grid-template-rows: 50px 4fr;
+    
+}
+.main-content-header{
+    font-family: "light-roboto",sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color:rgb(44, 56, 49);
+    
+}
+.announcements-container{
+    background-color: var(--announcements-background);
+    padding:40px;
+    display:flex;
+    flex-direction: column;
+    box-shadow: 10px 10px 5px rgba(0,0,0,20%);
+    gap:10px;
+    border-radius: 15px;
+    padding-bottom: 0px;
+}
+
+.announcements-container h2{
+    font-family: "roboto",sans-serif;
+    font-weight: 100;
+    font-size: 1.3rem;
+    color:var(--sidebar-text);
+}
+.announcements-container p{
+    font-family: "light-roboto",sans-serif;
+    color:var(--sidebar-text);
+}
+.spacer{
+    height:1px;
+    background-color: rgb(180, 180, 180);
+
+}
+.trending{
+    grid-area:trending;
+    margin-top: 50px;
+    display:grid;
+    grid-template-rows: 50px 4fr;
+    
+}
+.trending-container{
+    background-color: var(--trending-background);
+    padding:40px;
+    box-shadow: 10px 10px 5px rgba(0,0,0,20%); 
+    border-radius: 15px;
+    padding-bottom: 0px;
+    display:grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: repeat(4,1fr);
+    padding-left: 30px;
+    padding-right: 30px;
+    column-gap: 10px;
+    padding-top:20px;
+    row-gap: clamp(10px,25px,40px);
+    
+
+}
+.trending-container img{
+    width:76%;
+    border-radius: 40px;
+    align-self: center;
+    justify-self: center;
+}
+.trending-name{
+    font-family: "light-roboto",sans-serif;
+    font-weight: 600;
+    color:var(--sidebar-text);
+}
+.trending-project{
+    font-family: "light-roboto",sans-serif;
+    color: rgb(56, 55, 55);
+    font-weight: 500;
+    color:var(--sidebar-text);
+}
+.trending-wrapper{
+    align-self: center;
+}
+.test{
+    background-color: blue;
+    
+}
+.projects-cards{
+    display:grid ;
+   
+   
+    overflow: auto;
+    grid-template-columns: repeat(auto-fit,minmax(100px,47%));
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    gap:30px
+
 }
 .projects{
     grid-area:projects;
     display:grid;
-    grid-template-rows: minmax(50px,1fr) 8fr;
+    grid-template-rows: 50px 8fr;
     
 }
-.announcements{
-    grid-area:announcements;
-    display:grid;
-    grid-template-rows: minmax(50px,1fr) 4fr;
+.project-card{
+    background-color: var(--project-card-padding);
+    border-radius: 15px;
 }
-.trending{
-    grid-area:trending;
+.nameless-container{
+    background-color: var(--project-card-background);
+    width:98%;
+    height: 100%;
+    margin-left:auto;
+    padding-top:clamp(20px,40px,60px);
+    box-sizing:border-box;
+    padding-left: 25px;
+    padding-right: clamp(0px,20px,30px);
+    display:flex;
+    flex-direction: column;
+    padding-bottom:clamp(20px,40px,60px); ;
 }
-.test{
-    background-color: blue;
+.nameless-container h2{
+    font-family: "roboto",sans-serif;
+    font-weight: 1;
+    font-size:clamp(1rem,2rem,5rem);
+    color:white;
 }
-.projects-cards{
-    display:grid ;
+.nameless-container p{
+    font-family: "light-roboto",sans-serif;
+    flex-grow: 1;
+    color:white;
     
-    grid-template-rows: repeat(3,minmax(150px, 1fr));
-    grid-template-columns: repeat(auto-fit,minmax(150px, 1fr));
-
-
+}
+.flex-container{
+    display:flex;
+    flex-direction:row;
+    height:50px;
+    justify-self:flex-end;
+    align-self: flex-end;
+justify-content: flex-end;
+gap:30px;
+    
+}
+.flex-container svg{
+    width:80%;
+    flex-basis: clamp(20px,60px,100px);
+    fill:white;
 }
